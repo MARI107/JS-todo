@@ -1,10 +1,50 @@
 import "./styles.css";
 
-document.getElementById("app").innerHTML = `
-<h1>Hello Vanilla!</h1>
-<div>
-  We use the same configuration as Parcel to bundle this sandbox, you can find more
-  info about Parcel 
-  <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>.
-</div>
-`;
+const onClickAdd = () => {
+  //テキストボックスの値を取得し、初期化する
+  const inputText = document.getElementById("add-text").value;
+  document.getElementById("add-text").value = "";
+
+  //div生成
+  const div = document.createElement("div");
+  div.className = "list-row";
+  console.log(div);
+
+  //liタグ生成
+  const li = document.createElement("li");
+  li.innerText = inputText;
+
+  //button(完了)タグの生成
+  const completeButton = document.createElement("button");
+  completeButton.innerText = "完了";
+  completeButton.addEventListener("click", () => {
+    //押された完了bボタンの親タグ（div）を未完了リストから削除
+    deleteFromIncompleteList(deleteButton.parentNode);
+    document.getElementById("incomplete-list").removeChild(deleteTaret);
+  });
+
+  //button(削除)タグの生成
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "削除";
+  deleteButton.addEventListener("click", () => {
+    //押された削除bボタンの親タグ（div）を未完了リストから削除
+    deleteFromIncompleteList(deleteButton.parentNode);
+  });
+
+  //divタグの子要素に各要素を設定
+  div.appendChild(li);
+  div.appendChild(completeButton);
+  div.appendChild(deleteButton);
+
+  //未完了リストに追加
+  document.getElementById("incomplete-list").appendChild(div);
+};
+
+document
+  .getElementById("add-button")
+  .addEventListener("click", () => onClickAdd());
+
+//未完了リストから指定の要素を削除
+const deleteFromIncompleteList = (target) => {
+  document.getElementById("incomplete-list").removeChild(target);
+};
