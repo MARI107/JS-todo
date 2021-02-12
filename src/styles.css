@@ -24,6 +24,7 @@ button:hover {
 
 li {
   margin-right: 8px;
+  list-style: none;
 }
 
 .input-area {
